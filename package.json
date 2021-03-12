@@ -20,7 +20,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server --port 3333 --watch db.json"
   },
   "browserslist": {
     "production": [
