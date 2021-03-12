@@ -21,7 +21,7 @@ interface Transaction {
   formattedDate: string;
   type: 'income' | 'outcome';
   category: { title: string };
-  created_at: Date;
+  createdAt: Date;
 }
 
 interface Balance {
@@ -37,15 +37,21 @@ interface Report {
 
 const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [balance, setBalance] = useState<Balance>({} as Balance);
+  const initBalance = {
+    income: 0,
+    outcome: 0,
+    total: 0,
+  } as Balance;
+  const [balance, setBalance] = useState<Balance>(initBalance);
 
   useEffect(() => {
     async function loadTransactions(): Promise<void> {
       const { data: report } = await api.get<Report>('transactions');
+      console.log(report);
       const formattedTransactions = report.transactions.map(t => {
         return {
           ...t,
-          formattedDate: formatDate(new Date(t.created_at)),
+          formattedDate: formatDate(new Date(t.createdAt)),
           formattedValue:
             (t.type === 'outcome' ? ' - ' : '') + formatValue(t.value),
         };

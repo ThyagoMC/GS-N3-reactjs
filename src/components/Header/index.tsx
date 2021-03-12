@@ -10,7 +10,7 @@ interface HeaderProps {
   size?: 'small' | 'large';
 }
 
-const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
+const Header: React.FC<HeaderProps> = ({ size }: HeaderProps) => (
   <Container size={size}>
     <header>
       <img src={Logo} alt="GoFinances" />
@@ -21,5 +21,9 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
     </header>
   </Container>
 );
+
+Header.defaultProps = {
+  size: 'large',
+};
 
 export default Header;

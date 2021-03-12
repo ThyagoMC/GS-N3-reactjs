@@ -1,8 +1,8 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 interface UploadProps {
-  isDragActive: boolean;
-  isDragReject: boolean;
+  isDragActive?: boolean;
+  isDragReject?: boolean;
   refKey?: string;
   [key: string]: any;
   type?: 'error' | 'success' | 'default';
@@ -25,10 +25,10 @@ export const DropContainer = styled.div.attrs({
 
   transition: height 0.2s ease;
 
-  ${(props: UploadProps): false | FlattenSimpleInterpolation =>
+  ${(props: UploadProps): false | FlattenSimpleInterpolation | undefined =>
     props.isDragActive && dragActive}
 
-  ${(props: UploadProps): false | FlattenSimpleInterpolation =>
+  ${(props: UploadProps): false | FlattenSimpleInterpolation | undefined =>
     props.isDragReject && dragReject}
 `;
 
